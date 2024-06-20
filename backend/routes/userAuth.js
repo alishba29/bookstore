@@ -10,6 +10,7 @@ const authenticationToken = (req, res, next) => {
 
   jwt.verify(token, "bookstore", (err, user) => {
     if (err) {
+      console.log(err);
       return res
         .status(403)
         .json({ message: "Token expired, Please sign in again" });

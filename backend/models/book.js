@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const order = new mongoose.Schema(
+const book = new mongoose.Schema(
   {
     url: {
       type: String,
       required: true,
     },
 
-    titlr: {
+    title: {
       type: String,
       required: true,
     },
@@ -27,7 +27,7 @@ const order = new mongoose.Schema(
       required: true,
     },
 
-    Language: {
+    language: {
       type: String,
       required: true,
     },
