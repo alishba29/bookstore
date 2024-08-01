@@ -16,12 +16,10 @@ const Hero = () => {
                 Discover Books
              </button>
              </div>
-            
          </div>
-         <div className='w-full  h-auto lg:h-[100%] flex items-center justify-center'>
-         <img src="./hero.png" alt="hero" />
+         <div className='w-full h-auto lg:h-[100%] flex justify-center'>
+         <img src="./hero.png" alt="hero" className="w-full h-full object-cover" />
          </div>
-        
          </div>
    );
 };

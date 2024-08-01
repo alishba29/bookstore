@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import './index.css';
 const App = () => {
   return (
     <div>
