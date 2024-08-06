@@ -2,7 +2,7 @@ import React from 'react'
 
 const AllBooks = () => {
   return (
-    <div>AllBooks</div>
+    <div className='bg-zinc-900 px-4'>AllBooks</div>
   )
 }
 
