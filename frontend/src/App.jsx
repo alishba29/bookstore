@@ -13,7 +13,7 @@ import './index.css';
 const App = () => {
   return (
     <div>
-      <Router>
+      
       <Navbar />
     <Routes>
       <Route exact path ="/" element = {<Home /> }/>
@@ -25,7 +25,7 @@ const App = () => {
       <Route path="view-book-details/:id" element={<ViewBookDetails/>}/>
       </Routes>
       <Footer /> 
-      </Router>   
+         
     </div>
   );
 };

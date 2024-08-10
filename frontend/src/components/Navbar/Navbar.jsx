@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { FaGripLines } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const links = [
     {
       title: "Home",
       link: "/"
-    },
-    {
-      title: "About Us",
-      link: "/about-us"
     },
     {
       title: "All Books",
@@ -24,7 +21,17 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile"
     },
+    {
+      title: "About Us",
+      link: "/about-us"
+    },
   ];
+  const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn ?? false);
+ 
+  if(isLoggedIn===false){
+    links.splice(2,2);
+  }
+
   const [mobileNav, setMobileNav] = useState(false);
 
   return (
