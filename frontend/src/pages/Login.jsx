@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import {authActions} from '../store/auth';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Login = () => {
@@ -10,6 +12,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch(); 
   const change = (e) => {
     const {name, value} = e.target;
     setValues({...Values, [name]: value});
@@ -26,12 +29,19 @@ const Login = () => {
           `http://localhost:3000/api/v1/sign-in`,
           Values
         );
-       console.log(response.data);
-        //navigate("/Login");
+        dispatch(authActions.login());//calling login action which will make login state true from authactions
+        dispatch(authActions.changeRole(response.data.role));
+        localStorage.setItem("id", response.data.id);
+      localStorage.setItem("token", response.data.token);   
+      localStorage.setItem("role", response.data.role);
+      navigate("/Profile");
       }
     } catch (error) {
-      alert(error.response.data.message);
-     //13:52 / 32:0
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     }
   };
   return (

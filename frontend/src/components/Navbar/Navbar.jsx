@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
@@ -19,17 +19,19 @@ const Navbar = () => {
     },
     {
       title: "Profile",
-      link: "/profile"
+      link: "/profile",
+      className: "px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300" // Adjusted padding for better alignment
     },
-    {
-      title: "About Us",
-      link: "/about-us"
-    },
+    // {
+    //   title: "About Us",
+    //   link: "/about-us"
+    // },
   ];
+
   const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn ?? false);
- 
-  if(isLoggedIn===false){
-    links.splice(2,2);
+
+  if (isLoggedIn === false) {
+    links.splice(2, 2); // Removes "Cart" and "Profile" if not logged in
   }
 
   const [mobileNav, setMobileNav] = useState(false);
@@ -46,31 +48,33 @@ const Navbar = () => {
           <h1 className="text-2xl font-semibold">Bookista</h1>
         </div>
         <div className="nav-links-bookista block md:flex items-center gap-4">
-          <div className="hidden md:flex gap-4">
+          <div className="hidden md:flex items-center gap-4"> {/* Ensure vertical alignment */}
             {links.map((item, i) => (
               <Link
                 to={item.link}
-                className="hover:text-blue-500 transition-all duration-300"
+                className={`hover:text-blue-500 transition-all duration-300 ${item.className ? item.className : ""}`}
                 key={i}
               >
                 {item.title}
               </Link>
             ))}
           </div>
-          <div className="hidden md:flex gap-4">
-            <Link
-              to="/Login"
-              className="px-4 py-2 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
-            >
-              LogIn
-            </Link>
-            <Link
-              to="/Signup"
-              className="px-4 py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
-            >
-              Sign Up
-            </Link>
-          </div>
+          {isLoggedIn === false && 
+            <div className="hidden md:flex gap-4">
+              <Link
+                to="/Login"
+                className="px-4 py-2 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+              >
+                LogIn
+              </Link>
+              <Link
+                to="/Signup"
+                className="px-4 py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+              >
+                Sign Up
+              </Link>
+            </div>
+          }
           <button className="text-white text-2xl hover:text-zinc-400 md:hidden" onClick={() => setMobileNav(!mobileNav)}>
             <FaGripLines />
           </button>
@@ -87,20 +91,22 @@ const Navbar = () => {
             {item.title}
           </Link>
         ))}
-        <Link
-          to="/Login"
-          className="px-8 mb-8 py-2 text-3xl font-semibold border border-blue-500 rounded text-white  hover:bg-white hover:text-zinc-800 transition-all duration-300"
-          onClick={() => setMobileNav(false)} // Close the menu when a link is clicked
-        >
-          LogIn
-        </Link>
-        <Link
-          to="/Signup"
-          className="px-8 mb-8 py-2 text-3xl font-semibold bg-blue-500 rounded  hover:bg-white hover:text-zinc-800 transition-all duration-300"
-          onClick={() => setMobileNav(false)} // Close the menu when a link is clicked
-        >
-          Sign Up
-        </Link>
+        {isLoggedIn === false && <>
+          <Link
+            to="/Login"
+            className="px-8 mb-8 py-2 text-3xl font-semibold border border-blue-500 rounded text-white hover:bg-white hover:text-zinc-800 transition-all duration-300"
+            onClick={() => setMobileNav(false)} // Close the menu when a link is clicked
+          >
+            LogIn
+          </Link>
+          <Link
+            to="/Signup"
+            className="px-8 mb-8 py-2 text-3xl font-semibold bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+            onClick={() => setMobileNav(false)} // Close the menu when a link is clicked
+          >
+            Sign Up
+          </Link>
+        </>}
       </div>
     </>
   );

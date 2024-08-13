@@ -30,7 +30,11 @@ const navigate = useNavigate();
         navigate("/Login");
       }
     } catch (error) {
-      alert(error.response.data.message);
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     }
   };
   return (
