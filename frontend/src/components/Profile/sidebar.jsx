@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaArrowRightFromBracket } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa'; 
 
 const Sidebar = ({data}) => {
    
@@ -34,8 +34,8 @@ const Sidebar = ({data}) => {
                 Settings
             </Link>
         </div>
-        <button className="bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-0 text-white font-semibold flex items-center justify-between">
-            Log Out <FaArrowRightFromBracket className="ms-4"/>
+        <button className="bg-zinc-900 py-2 rounded w-4/6 lg:w-full mt-4 lg:mt-0 text-white font-semibold flex items-center justify-center hover:bg-white hover:text-zinc-900 transition-all duration-300">
+           Log Out <FaSignOutAlt className="ms-4"/> 
         </button>
     </div>
   )
