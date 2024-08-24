@@ -11,6 +11,7 @@ const Order = require("./routes/order");
 //routes
 app.use(cors());
 app.use(express.json());
+app.use(express.static("frontend/public"));
 
 app.use("/api/v1", User);
 app.use("/api/v1", Books);
