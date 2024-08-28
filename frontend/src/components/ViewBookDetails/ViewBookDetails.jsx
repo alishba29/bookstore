@@ -27,6 +27,22 @@ const ViewBookDetails = () => {
         }
         fetch();
     },[]);
+      const headers ={
+        id: localStorage.getItem('id'),
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        bookid: id,
+      };
+    
+    const handleFavourite = async() => {
+      const response = await axios.put("http://localhost:3000/api/v1/add-book-to-favourite",{},{headers});
+      alert(response.data.message);
+    };
+
+    const handleCart = async() => {
+      const response = await axios.put("http://localhost:3000/api/v1/add-to-cart",{},{headers});
+      alert(response.data.message);
+    };
+
   return (
     <>
     {Data && (
@@ -37,27 +53,29 @@ const ViewBookDetails = () => {
  <img src ={Data.url} alt="/" className='h-[50vh] md:h-[60vh] lg:h-[70vh] rounded'/>
 
  {isLoggedIn === true && role === "user" && (
-  <div className='flex flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0'>
+  <div className='flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0'>
   
-  <button className='text-white rounded lg:rounded-full text-3xl p-3 bg-red-500 flex items-center justify-center'>
+  <button className='text-white rounded lg:rounded-full text-3xl p-3 bg-red-500 flex items-center justify-center' 
+  onClick={handleFavourite}>
     <FaHeart/><span className='ms-4 block lg:hidden'>Favourites</span>
     </button>
   
-  <button className='text-white rounded lg:rounded-full text-3xl p-3 mt-4 bg-blue-500 mt-0 lg:mt-8 flex items-center justify-center'>
+  <button className='text-white rounded lg:rounded-full text-3xl p-3 mt-8 md:mt-0 bg-blue-500 lg:mt-8 flex items-center justify-center'
+  onClick={handleCart}>
     <FaCartShopping /><span className='ms-4 block lg:hidden'>Add to Cart</span>
   </button>
  </div>
  )}
 
  {isLoggedIn === true && role === "admin" && (
-  <div className='flex flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0'>
+  <div className='flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0'>
   
   <button className='text-black rounded lg:rounded-full text-3xl p-3 bg-white flex items-center justify-center'>
   <FaEdit />
   <span className='ms-4 block lg:hidden'>Edit</span>
     </button>
   
-  <button className='text-red-500 rounded lg:rounded-full text-3xl p-3 mt-4 bg-white mt-0 lg:mt-8 flex items-center justify-center'>
+  <button className='text-red-500 rounded lg:rounded-full text-3xl p-3 mt-4 bg-white mt-8 md:mt-0 lg:mt-8 flex items-center justify-center'>
   <MdDeleteOutline />
   <span className='ms-4 block lg:hidden'>Delete</span>
   </button>

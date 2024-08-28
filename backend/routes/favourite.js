@@ -45,7 +45,7 @@ router.put(
 router.get("/get-favourite-books", authenticationToken, async (req, res) => {
   try {
     const { id } = req.headers;
-    const userData = await User.findById(id).populate(favourites);
+    const userData = await User.findById(id).populate("favourites");
     const favouriteBooks = userData.favourites;
     return res.json({
       status: "success",
