@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader';
+import {useNavigate} from 'react-router-dom'; 
 import { AiFillDelete } from 'react-icons/ai';
 import axios from 'axios';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [Cart, setCart] = useState(null); // Changed from [] to null
   const [Total, setTotal] = useState(0);
 
@@ -48,10 +50,24 @@ useEffect(() => {
 }
 }, [Cart]);
 
+const PlaceOrder = async () => {
+  try{
+    const response = await axios.post("http://localhost:3000/api/v1/place-order", 
+      {order: Cart}, 
+      { headers }
+    );
+    alert(response.data.message);
+    navigate("/profile/orderHistory");
+  } catch(error){
+    console.log(error);
+  }
+};
+
 
   return (
     <div className="bg-zinc-900 px-12 py-8 h-screen">
-      {Cart === null && <Loader />} {/* Loader only shows when Cart is null (data is being fetched) */}
+      {Cart === null && 
+      (<div classNamne = "h-screen w-full h-[100%] flex items-center justify-center"><Loader /></div>)} {/* Loader only shows when Cart is null (data is being fetched) */}
       {Cart && Cart.length === 0 && (
         <div className="h-screen">
           <div className="h-[100%] flex items-center justify-center flex-col">
@@ -115,7 +131,8 @@ useEffect(() => {
             <h2>{Cart.length}books </h2> <h2>Total ${Total} </h2>
             </div>
             <div className='w-[100%] mt-3'>
-              <button className='bg-zinc-100 rounded px-4 py-2 flex justify-center w-full font-semibold hover:bg-zinc-500'>
+              <button className='bg-zinc-100 rounded px-4 py-2 flex justify-center w-full font-semibold hover:bg-zinc-500'
+              onClick={PlaceOrder}>
               Place your order
               </button>
             </div>
