@@ -22,16 +22,24 @@ const Navbar = () => {
       link: "/profile",
       className: "px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300" // Adjusted padding for better alignment
     },
-    // {
-    //   title: "About Us",
-    //   link: "/about-us"
-    // },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+      className: "px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300" // Adjusted padding for better alignment
+    },
   ];
 
   const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn ?? false);
+  const role = useSelector((state) => state.auth?.role ?? false);
 
   if (isLoggedIn === false) {
     links.splice(2, 2); // Removes "Cart" and "Profile" if not logged in
+  }
+  if(isLoggedIn === true && role === "user") {
+    links.splice(4, 1); // Removes "Profile" if logged in as user'){
+  }
+  if(isLoggedIn === true && role === "admin") {
+    links.splice(3, 1); // Removes "Profile" if logged in as admin'){
   }
 
   const [mobileNav, setMobileNav] = useState(false);

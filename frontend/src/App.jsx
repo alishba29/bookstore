@@ -13,6 +13,8 @@ import './index.css';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authActions } from "./store/auth.js";
+import AllOrders from "./pages/AllOrders.jsx";
+import AddBooks from "./pages/AddBooks.jsx";
 import Favourites from "./components/Profile/Favourites.jsx";
 import UserOrderHistory from "./components/Profile/UserOrderHistory.jsx";
 import Settings from "./components/Profile/Settings.jsx";
@@ -41,11 +43,16 @@ const App = () => {
       <Route  path = "/Login" element = {<Login/> }/>
       <Route  path = "/cart" element = {<Cart/> }/>
       <Route  path = "/profile" element = {<Profile/> }>
-      <Route index element={<Favourites/>}/>
+     {role === "user"?  <Route index element={<Favourites/>}/>:<Route index element={<AllOrders/>}/>}
+     {role === "admin" &&(
+      <Route path = "/profile/add-book" element = {<AddBooks/>}
+      />
+     )}
       <Route path="/profile/orderHistory" element={<UserOrderHistory/>}/>
       <Route path="/profile/settings" element={<Settings/>}/>
       </Route> {/*by default this profile pagfe will be here */}
       <Route path="view-book-details/:id" element={<ViewBookDetails/>}/>
+   
       </Routes>
       <Footer /> 
     </div>

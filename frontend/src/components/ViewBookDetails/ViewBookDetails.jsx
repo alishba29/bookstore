@@ -42,6 +42,10 @@ const ViewBookDetails = () => {
       const response = await axios.put("http://localhost:3000/api/v1/add-to-cart",{},{headers});
       alert(response.data.message);
     };
+    const deleteBook = async() =>{
+      const reponse =await axios.delete("http://localhost:3000/api/v1/delete-book",{headers});
+      alert(reponse.data.message);
+    }
 
   return (
     <>
@@ -75,7 +79,7 @@ const ViewBookDetails = () => {
   <span className='ms-4 block lg:hidden'>Edit</span>
     </button>
   
-  <button className='text-red-500 rounded lg:rounded-full text-3xl p-3 mt-4 bg-white mt-8 md:mt-0 lg:mt-8 flex items-center justify-center'>
+  <button className='text-red-500 rounded lg:rounded-full text-3xl p-3 mt-4 bg-white mt-8 md:mt-0 lg:mt-8 flex items-center justify-center' onClick= {deleteBook}>
   <MdDeleteOutline />
   <span className='ms-4 block lg:hidden'>Delete</span>
   </button>
