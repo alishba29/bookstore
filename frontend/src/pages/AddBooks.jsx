@@ -53,7 +53,7 @@ const AddBooks = () => {
     };
   return(
     <div className='h-[100%] p-0 md:p-4'>
-        <h1 className='text-3xl  md:text-5xl font-sembold text-zinc-500 mb-8'> Add Books</h1>
+        <h1 className='text-3xl  md:text-5xl font-sembold text-zinc-500 mb-8'>Add Book</h1>
         <div className='p-4 bg-zinc-800 rounded'>
             <div>
                 <label htmlFor="" className='text-zinc-400'>

@@ -18,6 +18,8 @@ import AddBooks from "./pages/AddBooks.jsx";
 import Favourites from "./components/Profile/Favourites.jsx";
 import UserOrderHistory from "./components/Profile/UserOrderHistory.jsx";
 import Settings from "./components/Profile/Settings.jsx";
+import UpdateBook from "./pages/UpdateBook.jsx";
+
 const App = () => {
   const dispatch = useDispatch();
   const role = useSelector((state) => state.auth.role);
@@ -43,6 +45,7 @@ const App = () => {
       <Route  path = "/Login" element = {<Login/> }/>
       <Route  path = "/cart" element = {<Cart/> }/>
       <Route  path = "/profile" element = {<Profile/> }>
+      
      {role === "user"?  <Route index element={<Favourites/>}/>:<Route index element={<AllOrders/>}/>}
      {role === "admin" &&(
       <Route path = "/profile/add-book" element = {<AddBooks/>}
@@ -52,7 +55,7 @@ const App = () => {
       <Route path="/profile/settings" element={<Settings/>}/>
       </Route> {/*by default this profile pagfe will be here */}
       <Route path="view-book-details/:id" element={<ViewBookDetails/>}/>
-   
+      <Route  path = "/updateBook/:id" element = {<UpdateBook/> }/>
       </Routes>
       <Footer /> 
     </div>
