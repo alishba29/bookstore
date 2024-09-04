@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] flex flex-col md:flex-row items-center justify-center px-4 md:px-0">
+    <div className="h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-0 -mt-9"> {/* Adjusted margin here */}
       <div className="w-full mb-12 md:mb-0 lg:w-3/6 flex flex-col items-center lg:items-start justify-center">
-        <h1 className="text-4xl lg:text-6xl font-semibold text-yellow-100 text-center lg:text-left">
+        <h1 className="mb-4 text-4xl lg:text-6xl font-semibold text-yellow-100 text-center lg:text-left">
           Discover Your Next Page Turner
         </h1>
         <p className="mt-4 text-xl text-zinc-300 text-center lg:text-left">
@@ -14,12 +14,12 @@ const Hero = () => {
         <div className="mt-8">
           <Link 
             to="/all-books"
-            className="text-yellow-100 text-xl lg:text-2xl font-semibold border border-yellow-100 px-10 py-3 hover:bg-zinc-800 rounded-full">
+            className="mt-3 text-yellow-100 text-xl lg:text-2xl font-semibold border border-yellow-100 px-10 py-3 hover:bg-zinc-800 rounded-full">
             Discover Books
           </Link>
         </div>
       </div>
-      <div className="w-full h-auto lg:h-[100%] flex justify-center mt-8 md:mt-0">
+      <div className="w-full lg:w-4/6 h-auto flex justify-center mt-8 md:mt-0">
         <img src="./hero.png" alt="hero" className="w-full h-full object-cover" />
       </div>
     </div>

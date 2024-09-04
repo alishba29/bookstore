@@ -33,7 +33,7 @@ const Navbar = () => {
   const role = useSelector((state) => state.auth?.role ?? false);
 
   if (isLoggedIn === false) {
-    links.splice(2, 2); // Removes "Cart" and "Profile" if not logged in
+    links.splice(2, 3); // Removes "Cart" and "Profile" if not logged in
   }
   if(isLoggedIn === true && role === "user") {
     links.splice(4, 1); // Removes "Profile" if logged in as user'){
