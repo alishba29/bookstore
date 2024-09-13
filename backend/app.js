@@ -9,7 +9,7 @@ const Favourite = require("./routes/favourite");
 const Cart = require("./routes/cart");
 const Order = require("./routes/order");
 //routes
-
+//check
 app.use(
   cors({
     origin: ["https://deploy-mern-1whq.vercel.app"],
